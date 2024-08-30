@@ -1,7 +1,6 @@
-import { Hono, Context } from "hono";
+import { Context } from "hono";
 import connection from "../Database/dbConnection";
 import { sign } from "hono/jwt";
-const app = new Hono();
 
 async function signup(c: Context): Promise<Response> {
   // c: context variable
