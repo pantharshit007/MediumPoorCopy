@@ -2,7 +2,7 @@ import { Context } from "hono";
 import { verify } from "hono/jwt";
 
 export async function auth(c: Context, next: any) {
-  const header = c.req.header("authorization") || "";
+  const header = c.req.header("Authorization") || "";
   if (!header) {
     c.status(401);
     c.json({

@@ -15,7 +15,8 @@ model User {
   email     String @unique
   name      String?
   password  String
-  posts      Post[]
+  salt      String
+  posts     Post[]
 }
 
 model Post{
