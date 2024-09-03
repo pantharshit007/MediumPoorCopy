@@ -1,6 +1,7 @@
 import { Context } from "hono";
 import connection from "../Database/dbConnection";
 import { StatusCode } from "hono/utils/http-status";
+import { createBlog, updateBlog } from "@jethiya007/mediumcopy-common";
 
 // Utility function for sending JSON responses
 function sendJsonResponse(
@@ -23,6 +24,13 @@ async function createPost(c: Context) {
   const prisma = connection(c);
   const authorId: string = c.get("userId");
   const body = await c.req.json();
+
+  const { success, error } = createBlog.safeParse(body);
+  if (!success) {
+    const errorMessages = error.flatten();
+    c.status(400);
+    return c.json({ error: errorMessages });
+  }
 
   try {
     const post = await prisma.post.create({
@@ -47,6 +55,12 @@ async function updatePost(c: Context) {
   const authorId: string = c.get("userId");
   const blogId = c.req.param("id");
   const body = await c.req.json();
+
+  const { success, error } = updateBlog.safeParse(body);
+  if (!success) {
+    c.status(400);
+    return c.json({ error: error.message });
+  }
 
   try {
     const updatedBlog = await prisma.post.update({

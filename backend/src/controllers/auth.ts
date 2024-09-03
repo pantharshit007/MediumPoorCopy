@@ -2,6 +2,7 @@ import { Context } from "hono";
 import connection from "../Database/dbConnection";
 import { sign } from "hono/jwt";
 import { generateSalt, hashPassword } from "../utils/hashConversion";
+import { loginInput, signupInput } from "@jethiya007/mediumcopy-common";
 
 //! update input data so no sql injection is possible
 
@@ -10,6 +11,12 @@ async function signup(c: Context): Promise<Response> {
   const prisma = connection(c);
   try {
     const body = await c.req.json();
+    const { success } = signupInput.safeParse(body);
+    if (!success) {
+      c.status(400);
+      return c.json({ error: "invalid input" });
+    }
+
     const name = body.email.split("@")[0];
 
     const salt = generateSalt();
@@ -52,6 +59,11 @@ async function signup(c: Context): Promise<Response> {
 async function login(c: Context): Promise<Response> {
   const prisma = connection(c);
   const body = await c.req.json();
+  const { success } = loginInput.safeParse(body);
+  if (!success) {
+    c.status(400);
+    return c.json({ error: "invalid input" });
+  }
 
   try {
     const user = await prisma.user.findUnique({

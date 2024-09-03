@@ -16,3 +16,5 @@ export async function hashPassword(password: string): Promise<string> {
   const hash = await createHash(password, algorithm);
   return hash ?? "";
 }
+
+// https://developers.cloudflare.com/workers/runtime-apis/web-crypto/
