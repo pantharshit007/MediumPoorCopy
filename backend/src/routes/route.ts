@@ -21,7 +21,7 @@ const app = new Hono<{
 }>();
 
 app.post("/signup", signup);
-app.post("/signin", login);
+app.post("/login", login);
 app.get("/allusers", allusers);
 // app.delete("/@me/delete")    //TODO: delete user
 

@@ -99,14 +99,16 @@ async function login(c: Context): Promise<Response> {
       });
     }
 
+    // JWT payload with expiry time
     const payload = {
       email: user.email,
       id: user.id,
+      exp: Math.floor(Date.now() / 1000) + 60 * 60 * 2, // expires in 2 hour
     };
     user.password = "";
     user.salt = "";
 
-    const jwtToken = await sign(payload, c.env.JWT_SECRET); //not possible to assign expiry time
+    const jwtToken = await sign(payload, c.env.JWT_SECRET);
 
     return c.json({
       success: true,
@@ -118,10 +120,16 @@ async function login(c: Context): Promise<Response> {
         email: user.email,
       },
     });
-  } catch (err) {
+  } catch (err: any) {
     console.error("> Error while login", err);
     // @ts-ignore
-    return c.status(500).json({});
+    return c.json(
+      {
+        success: false,
+        message: err.message,
+      },
+      500
+    );
   }
 }
 

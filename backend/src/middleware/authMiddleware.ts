@@ -29,9 +29,19 @@ export async function auth(c: Context, next: any) {
   } catch (err: any) {
     console.error("> Error while Authorizing: " + err.message);
     c.status(500);
+
+    // for token expired
+    if (err.message.startsWith && err.message.endsWith("expired")) {
+      return c.json({
+        success: false,
+        message: "Token expired",
+      });
+    }
     return c.json({
       success: false,
-      message: "Error while authorizing",
+      message: err.message,
     });
   }
 }
+
+// TODO: special router for admin to use: /allusers
