@@ -22,6 +22,7 @@ const app = new Hono<{
 
 app.post("/signup", signup);
 app.post("/login", login);
+//! TODO: app.post("/logout", login);
 app.get("/allusers", allusers);
 // app.delete("/@me/delete")    //TODO: delete user
 
@@ -33,7 +34,7 @@ app.post("/blog/create", createPost);
 app.put("/blog/update/:id", updatePost);
 app.get("/blog/bulk", allPost);
 app.get("/blog/:id", getPost);
-app.get("/blog/@me/:id", userPost);
+app.get("/blog/@me", userPost); // ?id=
 app.delete("/blog/delete/:id", deletePost);
 
 export default app;

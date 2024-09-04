@@ -37,7 +37,7 @@ async function signup(c: Context): Promise<Response> {
       {
         success: true,
         message: "signup successfull",
-        userDetail: {
+        userDetails: {
           id: user.id,
           name: user.name,
           email: user.email,
@@ -114,7 +114,7 @@ async function login(c: Context): Promise<Response> {
       success: true,
       message: "Login Success!",
       token: jwtToken,
-      user: {
+      userDetails: {
         id: user.id,
         name: user.name,
         email: user.email,

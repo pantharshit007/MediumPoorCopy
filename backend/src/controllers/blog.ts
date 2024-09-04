@@ -147,7 +147,7 @@ async function getPost(c: Context) {
 async function userPost(c: Context) {
   const prisma = connection(c);
   const id1: string = c.get("userId");
-  const id2: string = c.req.param("id");
+  const id2: string | undefined = c.req.query("id");
   const authorId = id1 || id2;
 
   try {
