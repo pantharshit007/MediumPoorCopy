@@ -4,7 +4,7 @@ import { sign } from "hono/jwt";
 import { generateSalt, hashPassword } from "../utils/hashConversion";
 import { loginInput, signupInput } from "@jethiya007/mediumcopy-common";
 
-//! update input data so no sql injection is possible
+//! TODO:update input data so no sql injection is not possible
 
 async function signup(c: Context): Promise<Response> {
   // c: context variable

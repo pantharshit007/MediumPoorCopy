@@ -6,23 +6,27 @@ import Login from "./page/Login";
 import Blog from "./page/Blog";
 import Blogs from "./page/Blogs";
 import MyPost from "./page/MyPost";
-import DeleteBlog from "./page/DeleteBlog";
+import Post from "./components/Post";
+import NavBar from "./components/NavBar";
+import CreateBlog from "./page/CreateBlog";
+import UpdateBlog from "./page/UpdateBlog";
 
 function App() {
   return (
     <>
-      <p>random</p>
+      <div>
+        <NavBar />
+      </div>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route element={<Blog />}>
-          {/* <Route path="blog/new-story" element={<NewStory />} /> */}
-          {/* <Route path="/blog/update/:id" element={<UpdateBlog />} /> */}
-          {/* <Route path="/blog/:id" element={<Post />} /> */}
+          <Route path="blog/new-story" element={<CreateBlog />} />
+          <Route path="/blog/update/:id" element={<UpdateBlog />} />
+          <Route path="/blog/:id" element={<Post />} />
           <Route path="/blog/all" element={<Blogs />} />
           <Route path="/blog/@me" element={<MyPost />} />
-          <Route path="/blog/delete/:id" element={<DeleteBlog />} />
         </Route>
       </Routes>
     </>
