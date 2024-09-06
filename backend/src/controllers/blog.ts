@@ -41,7 +41,7 @@ async function createPost(c: Context) {
       },
     });
     return sendJsonResponse(c, 200, true, "Blog Post Created", {
-      PostId: post.id,
+      postId: post.id,
     });
   } catch (err: any) {
     console.error("> Error while creating post:", err.message);
@@ -127,7 +127,7 @@ async function getPost(c: Context) {
         title: true,
         content: true,
         author: {
-          select: { name: true },
+          select: { name: true, id: true },
         },
       },
     });
@@ -146,9 +146,9 @@ async function getPost(c: Context) {
 // Fetch all user's blogs
 async function userPost(c: Context) {
   const prisma = connection(c);
-  const id1: string = c.get("userId");
+  // const id1: string = c.get("userId");
   const id2: string | undefined = c.req.query("id");
-  const authorId = id1 || id2;
+  const authorId = id2;
 
   try {
     const blogs = await prisma.post.findMany({

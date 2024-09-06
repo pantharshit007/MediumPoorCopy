@@ -14,21 +14,21 @@ import UpdateBlog from "./page/UpdateBlog";
 function App() {
   return (
     <>
-      <div>
+      <div className="w-screen min-h-screen">
         <NavBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route element={<Blog />}>
+            <Route path="blog/new-story" element={<CreateBlog />} />
+            <Route path="/blog/update/:id" element={<UpdateBlog />} />
+            <Route path="/blog/:id" element={<Post />} />
+            <Route path="/blog/all" element={<Blogs />} />
+            <Route path="/blog/@me" element={<MyPost />} />
+          </Route>
+        </Routes>
       </div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route element={<Blog />}>
-          <Route path="blog/new-story" element={<CreateBlog />} />
-          <Route path="/blog/update/:id" element={<UpdateBlog />} />
-          <Route path="/blog/:id" element={<Post />} />
-          <Route path="/blog/all" element={<Blogs />} />
-          <Route path="/blog/@me" element={<MyPost />} />
-        </Route>
-      </Routes>
     </>
   );
 }

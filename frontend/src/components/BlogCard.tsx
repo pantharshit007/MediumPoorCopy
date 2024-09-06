@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Blog_img from "../assets/Blog_img.webp";
+import { Draft, useDraft } from "../store/store";
 
 interface BlogCardProps {
   id: string;
@@ -7,6 +8,7 @@ interface BlogCardProps {
   title: string;
   content: string;
   publishedDate: string;
+  updateAvailable?: Boolean;
 }
 
 function BlogCard({
@@ -15,11 +17,19 @@ function BlogCard({
   title,
   content,
   publishedDate,
+  updateAvailable = false,
 }: BlogCardProps) {
   function truncate(str: string, maxLength: number) {
     return str.length > maxLength ? str.slice(0, maxLength) + "..." : str;
   }
 
+  // Zustand hook to update the draft in the store
+  const updateDraft = useDraft((state) => state.updateDraft);
+
+  function updateBlog() {
+    const oldData: Draft = { title: title, content: content };
+    updateDraft(oldData);
+  }
   return (
     <Link to={"/blog/" + id}>
       <div className="flex w-full min-h-[230px] justify-center items-center px-3 py-2 gap-x-4 my-3 border-b-2 last-of-type:border-">
@@ -39,8 +49,13 @@ function BlogCard({
             </p>
           </div>
 
-          <div className="mt-4">
+          <div className="mt-4 flex gap-x-3">
             <p>{`${Math.ceil(content.length / 100)} min read`}</p>
+            {updateAvailable && (
+              <Link to={"/blog/update/" + id} onClick={updateBlog}>
+                <p>✏️</p>
+              </Link>
+            )}
           </div>
         </div>
 
@@ -70,7 +85,7 @@ export function Avatar({
     <div
       aria-label={name}
       className={` bg-indigo-400 my-auto border-2 border-gray-900 rounded-full 
-      ${size === "small" ? "w-10 h-10" : "w-20 h-20"}`}
+      ${size === "small" ? "w-10 h-10" : "w-12 h-12"}`}
     >
       <img src={imageUrl} alt={name} className="rounded-full" />
     </div>

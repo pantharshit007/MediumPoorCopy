@@ -8,9 +8,9 @@ export const authEndPoint = {
 
 export const blogEndPoint = {
   CREATE_BLOG: BASE_URL + "/blog/create",
-  UPDATE_BLOG: BASE_URL + "/blog/update/:id",
+  UPDATE_BLOG: BASE_URL + "/blog/update", //:id
   ALL_BLOG: BASE_URL + "/blog/bulk",
-  GET_BLOG: BASE_URL + "/blog/:id",
-  USER_BLOG: BASE_URL + "/blog/@me/:id",
-  DELETE_BLOG: BASE_URL + "/blog/delete/:id",
+  GET_BLOG: BASE_URL + "/blog", //:id
+  USER_BLOG: BASE_URL + "/blog/@me",
+  DELETE_BLOG: BASE_URL + "/blog/delete", //:id
 };

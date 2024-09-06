@@ -24,7 +24,11 @@ function Blogs() {
   }, []);
 
   if (loading) {
-    return <div className="loader"></div>;
+    return (
+      <div className="grid place-items-center min-h-[calc(100vh-3.5rem)]">
+        <div className="loader" />
+      </div>
+    );
   }
 
   return (

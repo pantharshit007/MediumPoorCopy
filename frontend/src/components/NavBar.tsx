@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Avatar } from "./BlogCard";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import { usePublish } from "../store/store";
 
 function NavBar() {
   const [showModal, setShowModal] = useState(false);
@@ -14,6 +15,8 @@ function NavBar() {
   const location = useLocation();
   const onCreateBlog = location.pathname === "/blog/new-story";
   const onUpdateBlog = location.pathname.startsWith("/blog/update");
+
+  const updatePublish = usePublish((state) => state.updatePublish);
 
   useEffect(() => {
     const val = localStorage.getItem("token");
@@ -28,33 +31,49 @@ function NavBar() {
 
     localStorage.removeItem("token");
     localStorage.removeItem("userData");
+    localStorage.clear();
     toast.success("Logout Success!");
     navigate("/login");
     return;
   }
 
+  function publish() {
+    updatePublish();
+    return;
+  }
+  
+  function update() {
+    updatePublish();
+    return;
+  }
+
   return (
     <>
-      <div className="h-12 bg-slate-100">
-        <div className="w-11/12 max-w-maxContent mx-auto h-full flex items-center justify-between">
-          <div>
+      <div className="h-12 border-b-2">
+        <div className="w-11/12 2xl:max-w-[1000px] mx-auto h-full flex items-center justify-between">
+          <div className="flex items-center gap-x-3">
             <Link to={"/"}>
               <p className="text-3xl font-semibold font-serif">Medium</p>
+            </Link>
+            <Link to={"/blog/all"}>
+              <p className="md:text-xl font-normal py-1 px-2 border-2 rounded-md shadow-md bg-gray-200">
+                All Blogs
+              </p>
             </Link>
           </div>
 
           <div className="flex items-center gap-x-6">
-            <Link to={"blog/new-story"}>
-              <button className="py-1 px-2 rounded-lg bg-green-400 font-medium font-mono shadow-md">
-                {onCreateBlog ? (
-                  <p>🚀 Publish</p>
-                ) : onUpdateBlog ? (
-                  <p>🛠️ Update</p>
-                ) : (
+            <button className="py-1 px-2 rounded-lg bg-green-400 font-medium font-mono shadow-md">
+              {onCreateBlog ? (
+                <p onClick={publish}>🚀 Publish</p>
+              ) : onUpdateBlog ? (
+                <p  onClick={update} className="text-green-900 italic">🛠️ Update</p>
+              ) : (
+                <Link to={"blog/new-story"}>
                   <p>✏️ New-Story</p>
-                )}
-              </button>
-            </Link>
+                </Link>
+              )}
+            </button>
 
             <div className="relative">
               <span onClick={() => setShowModal(!showModal)}>

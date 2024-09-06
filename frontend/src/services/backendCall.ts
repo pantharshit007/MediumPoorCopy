@@ -137,7 +137,7 @@ export async function updateBlog(
   try {
     const response = await apiConnector({
       method: "PUT",
-      URL: `${UPDATE_BLOG}?id=${param}`,
+      URL: `${UPDATE_BLOG}/${param}`,
       bodyData: data,
       headers: headers,
     });
@@ -191,7 +191,7 @@ export async function getBlog(token: string, param: string) {
   try {
     const response = await apiConnector({
       method: "GET",
-      URL: `${GET_BLOG}?id=${param}`,
+      URL: `${GET_BLOG}/${param}`,
       bodyData: undefined,
       headers: headers,
     });
@@ -211,7 +211,7 @@ export async function getBlog(token: string, param: string) {
   }
 }
 
-export async function userBlog(token: string, param: string) {
+export async function userBlog(token: string, param: object) {
   const toastId = toast.loading("Fetching Blog...");
   const headers = { Authorization: "Bearer " + token };
   try {
@@ -245,7 +245,7 @@ export async function deleteBlog(token: string, param: string) {
   try {
     const response = await apiConnector({
       method: "DELETE",
-      URL: `${DELETE_BLOG}?id=${param}`,
+      URL: `${DELETE_BLOG}/${param}`,
       bodyData: undefined,
       headers: headers,
     });

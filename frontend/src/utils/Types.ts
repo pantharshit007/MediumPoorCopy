@@ -4,5 +4,6 @@ export interface Blog {
   id: string;
   author: {
     name: string;
+    id?: string;
   };
 }

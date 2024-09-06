@@ -1,7 +1,16 @@
+import NewStory from "../components/NewStory";
+
 function CreateBlog() {
+  const status: "new" | "edit" = "new";
+
   return (
     <>
-      <div>CreateBlog</div>
+      <div>
+        <p>Create New Story...</p>
+        <div>
+          <NewStory status={status} />
+        </div>
+      </div>
     </>
   );
 }
