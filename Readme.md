@@ -8,3 +8,6 @@
 - PostgreSQL
 - Prisma
 - Clodflare
+
+
+[will be updated soon... hope so 🤞]
