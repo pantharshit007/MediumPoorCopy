@@ -13,7 +13,7 @@ A simplified clone of Medium.
 
 ## Final Project URL
 
-You can access the live version of the project at: [_here_](https://medium-poor-copy.cloudflare.app)
+You can access the live version of the project at: [_here_](https://firstcopymedium.vercel.app/)
 
 ## Features
 
