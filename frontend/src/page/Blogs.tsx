@@ -50,33 +50,6 @@ function Blogs() {
             No Blogs Available!
           </div>
         )}
-
-        <BlogCard
-          id="123"
-          authorName="jethiya"
-          title="How an ugly ass site makes more than 3000$ per month?"
-          content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem perferendis, quis corrupti deserunt animi possimus eos pariatur vitae tempora odit mollitia reiciendis ipsam. Itaque molestias ullam sequi assumenda, iste amet!
-      Dignissimos enim nemo eius ab? Eaque aut ad sint cum magni maiores. Voluptates quam accusantium a? Deserunt soluta, hic exercitationem, repellat minus dignissimos similique illum facere non, quidem eum sequi?"
-          publishedDate="05 September 2024"
-        />
-
-        <BlogCard
-          id="123"
-          authorName="jethiya"
-          title="How an ugly ass site makes more than 3000$ per month?"
-          content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem perferendis, quis corrupti deserunt animi possimus eos pariatur vitae tempora odit mollitia reiciendis ipsam. Itaque molestias ullam sequi assumenda, iste amet!
-      Dignissimos enim nemo eius ab? Eaque aut ad sint cum magni maiores. Voluptates quam accusantium a? Deserunt soluta, hic exercitationem, repellat minus dignissimos similique illum facere non, quidem eum sequi?"
-          publishedDate="05 September 2024"
-        />
-
-        <BlogCard
-          id="123"
-          authorName="jethiya"
-          title="How an ugly ass site makes more than 3000$ per month?"
-          content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem perferendis, quis corrupti deserunt animi possimus eos pariatur vitae tempora odit mollitia reiciendis ipsam. Itaque molestias ullam sequi assumenda, iste amet!
-      Dignissimos enim nemo eius ab? Eaque aut ad sint cum magni maiores. Voluptates quam accusantium a? Deserunt soluta, hic exercitationem, repellat minus dignissimos similique illum facere non, quidem eum sequi?"
-          publishedDate="05 September 2024"
-        />
       </div>
     </>
   );

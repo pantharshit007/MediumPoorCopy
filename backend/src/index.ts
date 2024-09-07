@@ -6,13 +6,20 @@ const app = new Hono<{
   Bindings: {
     DATABASE_URL: string;
     JWT_SECRET: string;
+    CORS_ORIGIN: string;
   };
   Variables: {
     userId: string;
   };
 }>();
 
-app.use("/*", cors());
+app.use("/*", async (c, next) => {
+  const corsMiddlewareHandler = cors({
+    origin: c.env?.CORS_ORIGIN,
+  });
+  return corsMiddlewareHandler(c, next);
+});
+
 app.route("/api/v1", routes);
 
 app.get("/", (c) => {
